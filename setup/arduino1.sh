@@ -3,7 +3,7 @@ set -o errexit -o errtrace -o nounset -o pipefail # Robust scripting (-euo pipef
 origDir=`pwd`; cd -P `dirname $0`; scriptDir=`pwd`; utilsDir=`dirname "$scriptDir"`; cd $origDir # Get the script directory
 
 # Help text.
-if [[ "${1:-}" = "--help" || "${1:-}" = "-h" ]]; then
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
   cat <<:END
 Setup Arduino IDE V1.8.19
 Usage: $0 [Options]
