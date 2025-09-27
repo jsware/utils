@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -o errexit -o errtrace -o nounset -o pipefail # Robust scripting
+origDir=`pwd`; cd -P `dirname $0`; scriptDir=`pwd`; utilsDir=`dirname "$scriptDir"`; cd $origDir # Get the script directory
+
+if [[ -z "${1:-}" || "${1:-}" = "--help" || "${1:-}" = "-h" ]]; then
+  cat <<:END
+Start a command in the background.
+Usage: ${0##*/} [Options] Command [Args] >>LogFile [2>&1 | 2>>ErrorFile]
+
+Start a command in the background, redirecting output to a log file. This
+ensures the process does not get a HUP signal when the terminal closes.
+
+Options:
+  -h, --help    Show this help.
+:END
+  exit 0
+fi
+
+nohup "$@" &
