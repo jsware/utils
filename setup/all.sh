@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -o errexit -o errtrace -o nounset -o pipefail # Robust scripting (-euo pipefail)
-origDir=`pwd`; cd -P `dirname $0`; scriptDir=`pwd`; utilsDir=`dirname "$scriptDir"`; cd $origDir # Get the script directory
+origDir="$(pwd)"; cd -P "$(dirname "$0")"; scriptDir="$(pwd)"; scriptName="$(basename "$0")"; utilsDir="$(dirname "$scriptDir")"; cd "$origDir" # Get the script directory
 
 # Help text.
 if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
@@ -63,13 +63,14 @@ fi
 echo "Setting up all utilities..."
 
 echo "Variables:" >&3
-echo "  Orig Dir:   $origDir" >&3
-echo "  Script Dir: $scriptDir" >&3
-echo "  Utils Dir:  $utilsDir" >&3
-echo "  Verbose:    ${vbse:=}" >&3
-echo "  Debug:      ${dbug:=}" >&3
-echo "  Trace:      ${trce:=}" >&3
-echo "  Scripts:    ${setupScripts:=$scriptDir/*.sh}" >&3
+echo "  Orig Dir:    $origDir" >&3
+echo "  Script Dir:  $scriptDir" >&3
+echo "  Script Name: $scriptName" >&3
+echo "  Utils Dir:   $utilsDir" >&3
+echo "  Verbose:     ${vbse:=}" >&3
+echo "  Debug:       ${dbug:=}" >&3
+echo "  Trace:       ${trce:=}" >&3
+echo "  Scripts:     ${setupScripts:=$scriptDir/*.sh}" >&3
 
 for setup in $setupScripts; do
   if [[ $setup == $scriptDir/all.sh ]]; then

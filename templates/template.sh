@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -o errexit -o errtrace -o nounset -o pipefail # Robust scripting (-euo pipefail)
-origDir=`pwd`; cd -P `dirname $0`; scriptDir=`pwd`; cd $origDir # Get the script directory
+origDir="$(pwd)"; cd -P "$(dirname "$0")"; scriptDir="$(pwd)"; scriptName="$(basename "$0")"; cd "$origDir" # Get the script directory
 
-# Help text.
+# Help text
 if [[ -z "${1:-}" || "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
   cat <<:END
 TODO: Replace with Title
-Usage: ${0##*/} [Options] [Arguments]
+Usage: $scriptName [Options] [Arguments]
 
 Arguments:
   TODO: Describe arguments here.
@@ -66,7 +66,8 @@ fi
 echo "TODO: Start message..."
 
 echo "Variables:" >&3
-echo "  Orig Dir:   $origDir" >&3
-echo "  Script Dir: $scriptDir" >&3
+echo "  Orig Dir:    $origDir" >&3
+echo "  Script Dir:  $scriptDir" >&3
+echo "  Script Name: $scriptName" >&3
 
 echo "TODO: Finished message."

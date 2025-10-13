@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -o errexit -o errtrace -o nounset -o pipefail # Robust scripting (-euo pipefail)
-origDir=`pwd`; cd -P `dirname $0`; scriptDir=`pwd`; utilsDir=`dirname "$scriptDir"`; cd $origDir # Get the script directory
+origDir="$(pwd)"; cd -P "$(dirname "$0")"; scriptDir="$(pwd)"; scriptName="$(basename "$0")"; utilsDir="$(dirname "$scriptDir")"; cd "$origDir" # Get the script directory
 
-# Help
+# Help text
 if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
   cat <<:END
 Setup Environment Variables.
@@ -72,11 +72,12 @@ fi
 
 # Default variables
 echo "Variables:" >&3
-echo "  Orig Dir:   $origDir" >&3
-echo "  Script Dir: $scriptDir" >&3
-echo "  Utils Dir:  $utilsDir" >&3
-echo "  Env Vars:   ${envVars:=PATH}" >&3
-echo "  Dot File:   ${dotFile:=.bashrc}" >&3
+echo "  Orig Dir:    $origDir" >&3
+echo "  Script Dir:  $scriptDir" >&3
+echo "  Script Name: $scriptName" >&3
+echo "  Utils Dir:   $utilsDir" >&3
+echo "  Env Vars:    ${envVars:=PATH}" >&3
+echo "  Dot File:    ${dotFile:=.bashrc}" >&3
 
 echo "Using '$dotFile' to set $envVars..."
 if [ ! -f "$HOME/$dotFile" ]; then
