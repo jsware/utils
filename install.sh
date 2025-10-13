@@ -6,9 +6,9 @@ if [ -z "${BASH_VERSION:-}" ]; then
   exit 1
 fi
 set -o errexit -o errtrace -o nounset -o pipefail # Robust scripting (-euo pipefail)
-origDir=`pwd`; cd -P `dirname $0`; scriptDir=`pwd`; cd $origDir # Get the script directory
+origDir="$(pwd)"; cd -P "$(dirname "$0")"; scriptDir="$(pwd)"; scriptName="$(basename "$0")"; cd "$origDir" # Get the script directory
 
-# Help text.
+# Help text
 if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
   cat <<:END
 Install jsware/utils
