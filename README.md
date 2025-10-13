@@ -8,10 +8,16 @@ Some utilities for Linux and MacOS I have found useful.
 
 # Installation
 
-To install or update these utilities, use the following command:
+To install or update these utilities, use the following commands:
 
+Change into the desired directory, e.g:
 ```sh
+mkdir -p ~/GitHub
 cd ~/GitHub
+```
+
+Then run the installer direct from GitHub:
+```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/jsware/utils/HEAD/install.sh)"
 ```
 
